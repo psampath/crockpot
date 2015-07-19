@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <!-- <li><a href="#" role="button">Home <span class="sr-only">(current)</span></a></li> -->
+        <li><%= link_to "Home", recipes_path %></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recipes <span class="caret"></span></a>
+          <ul class="dropdown-menu multi-level" role="menu">
+            <% @ingredients.each do |ingredient| %>
+            <li class="dropdown-submenu">
+                <%= link_to ingredient.name, recipes_path(:ing => ingredient) %>
+                <ul class="dropdown-menu">
+                  <% ingredient.recipes.each do |recipe| %>
+                    <li><%= link_to recipe.name, recipe_path(recipe)%></li>
+                  <%end%>
+                </ul>
+                <li role="separator" class="divider"></li>
+            </li>
+            <%end%>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">I'm hungry for<span class="caret"></span></a>
+          <ul class="dropdown-menu multi-level" role="menu">
+            <% @groups.each do |group| %>
+              <li><%= link_to group.name, recipes_path(:grp => group) %></li>
+              <li role="separator" class="divider"></li>
+            <%end%>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <%= form_tag(recipes_search_path, :method => "get", id: "search-form", html: {class: 'navbar-form navbar-right'}) do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Recipes", class: "form-control pull-left" %>
+            <%= link_to "", recipes_search_path(params[:search]), {:class => "btn btn-default glyphicon glyphicon-search pull-right"} %>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
