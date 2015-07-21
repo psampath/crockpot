@@ -3,13 +3,20 @@
     <div class="box">
       <% @recipes.each do |recipe| %>
       <div class="col-lg-12">
-        <div class="well">
-            <strong><%= link_to recipe.name, recipe_path(recipe) %></strong>
+        <div class="well vcenter">
+          <div class="col-md-2">
+            <%= link_to recipe_path(recipe) do %>
+              <%=  image_tag recipe.image.url(:thumb) %>
+            <% end %>
+          </div>
+          <div>
+            <strong><h4><%= link_to recipe.name, recipe_path(recipe) %></h4></strong>
             <p class="date">Posted on
               <strong><%= recipe.created_at.strftime("%b %d, %Y") %></strong>
             </p>
               <%= recipe.summary %>
             </p>
+          </div>
         </div>
       </div>
       <%end%>

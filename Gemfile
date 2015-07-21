@@ -29,6 +29,10 @@ gem 'will_paginate', '~> 3.0.7'
 gem 'bourbon'
 
 gem 'cocoon'
+
+gem "paperclip", "~> 4.3"
+
+gem 'rails_12factor', group: :production
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -50,3 +54,5 @@ group :development, :test do
 
   gem 'pry'
 end
+
+ruby "2.2.2"

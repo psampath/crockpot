@@ -18,7 +18,7 @@ class RecipesController < ApplicationController
   end
 
   def list
-    @recipes = Recipe.all.paginate(:page => params[:page], :per_page => 20)
+    @recipes = Recipe.all
   end
 
   def new
@@ -61,6 +61,6 @@ class RecipesController < ApplicationController
     end
 
     def recipe_params
-      params.require(:recipe).permit(:name, :summary, :url, :description, :search_terms, recipeIngredient_attributes: [ingredient_attributes: [:id, :name]])
+      params.require(:recipe).permit(:name, :summary, :url, :description, :search_terms, :image, recipeIngredient_attributes: [ingredient_attributes: [:id, :name]])
     end
 end
