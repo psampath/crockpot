@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
-  before_filter :fetch_nav
+  before_action :fetch_nav
+  before_action :authenticate, :only => [:new, :edit, :list]
 
   def index
     if params[:ing]
@@ -63,4 +64,11 @@ class RecipesController < ApplicationController
     def recipe_params
       params.require(:recipe).permit(:name, :summary, :url, :description, :search_terms, :image, recipeIngredient_attributes: [ingredient_attributes: [:id, :name]])
     end
+
+    def authenticate
+      authenticate_or_request_with_http_basic do |username,password|
+        username == "admin" && password == "password"
+      end
+    end
+
 end

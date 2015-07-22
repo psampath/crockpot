@@ -41,11 +41,11 @@
           </ul>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <%= form_tag(recipes_search_path, :method => "get", id: "search-form", html: {class: 'navbar-form navbar-right'}) do %>
-            <%= text_field_tag :search, params[:search], placeholder: "Search Recipes", class: "form-control pull-left" %>
+      <ul class="nav navbar-nav navbar-right form-inline">
+          <%= form_tag(recipes_search_path, :method => "get", id: "search-form", html: {class: 'navbar-form'}) do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Recipes", size: "35", class: "form-control pull-left" %>
             <%= link_to "", recipes_search_path(params[:search]), {:class => "btn btn-default glyphicon glyphicon-search pull-right"} %>
-        <% end %>
+          <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
