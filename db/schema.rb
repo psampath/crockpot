@@ -11,48 +11,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720235018) do
+ActiveRecord::Schema.define(version: 20150722225156) do
 
   create_table "groups", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "ingredients", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "recipe_groups", force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "group_id"
+    t.integer "recipe_id", limit: 4
+    t.integer "group_id",  limit: 4
   end
 
-  add_index "recipe_groups", ["group_id"], name: "index_recipe_groups_on_group_id"
-  add_index "recipe_groups", ["recipe_id"], name: "index_recipe_groups_on_recipe_id"
+  add_index "recipe_groups", ["group_id"], name: "index_recipe_groups_on_group_id", using: :btree
+  add_index "recipe_groups", ["recipe_id"], name: "index_recipe_groups_on_recipe_id", using: :btree
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.integer "recipe_id"
-    t.integer "ingredient_id"
+    t.integer "recipe_id",     limit: 4
+    t.integer "ingredient_id", limit: 4
   end
 
-  add_index "recipe_ingredients", ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
-  add_index "recipe_ingredients", ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
+  add_index "recipe_ingredients", ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id", using: :btree
+  add_index "recipe_ingredients", ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id", using: :btree
 
   create_table "recipes", force: :cascade do |t|
-    t.string   "name"
-    t.text     "summary"
-    t.text     "description"
-    t.text     "url"
-    t.text     "search_terms"
+    t.string   "name",               limit: 255
+    t.text     "summary",            limit: 65535
+    t.text     "description",        limit: 65535
+    t.text     "url",                limit: 65535
+    t.text     "search_terms",       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username",   limit: 255
+    t.string   "password",   limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
