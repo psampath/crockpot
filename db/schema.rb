@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150722225156) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "groups", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at"
@@ -26,16 +29,16 @@ ActiveRecord::Schema.define(version: 20150722225156) do
   end
 
   create_table "recipe_groups", force: :cascade do |t|
-    t.integer "recipe_id", limit: 4
-    t.integer "group_id",  limit: 4
+    t.integer "recipe_id"
+    t.integer "group_id"
   end
 
   add_index "recipe_groups", ["group_id"], name: "index_recipe_groups_on_group_id", using: :btree
   add_index "recipe_groups", ["recipe_id"], name: "index_recipe_groups_on_recipe_id", using: :btree
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.integer "recipe_id",     limit: 4
-    t.integer "ingredient_id", limit: 4
+    t.integer "recipe_id"
+    t.integer "ingredient_id"
   end
 
   add_index "recipe_ingredients", ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id", using: :btree
@@ -43,15 +46,15 @@ ActiveRecord::Schema.define(version: 20150722225156) do
 
   create_table "recipes", force: :cascade do |t|
     t.string   "name",               limit: 255
-    t.text     "summary",            limit: 65535
-    t.text     "description",        limit: 65535
-    t.text     "url",                limit: 65535
-    t.text     "search_terms",       limit: 65535
+    t.text     "summary"
+    t.text     "description"
+    t.text     "url"
+    t.text     "search_terms"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name",    limit: 255
     t.string   "image_content_type", limit: 255
-    t.integer  "image_file_size",    limit: 4
+    t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
 
