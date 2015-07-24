@@ -5,12 +5,12 @@ class RecipesController < ApplicationController
   def index
     if params[:ing]
       ingredient = Ingredient.find(params[:ing])
-      @recipes = ingredient.recipes.paginate(:page => params[:page], :per_page => 5)
+      @recipes = ingredient.recipes.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
     elsif params[:grp]
       group = Group.find(params[:grp])
-      @recipes = group.recipes.paginate(:page => params[:page], :per_page => 5)
+      @recipes = group.recipes.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
     else
-      @recipes = Recipe.paginate(:page => params[:page], :per_page => 5)
+      @recipes = Recipe.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
     end
   end
 
@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
   end
 
   def list
-    @recipes = Recipe.all
+    @recipes = Recipe.all.order('updated_at DESC')
   end
 
   def new
