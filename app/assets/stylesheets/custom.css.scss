@@ -314,11 +314,29 @@ footer p {
 }
 
 .social-section{
-  background: #fff;
-  background: rgba(255,255,255,0.9);
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
 }
 
 .col-centered{
+    padding-bottom: 30px;
+    padding-top: 20px;
     float: none;
     margin: 0 auto;
+}
+
+.col-video{
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.vertical-center {
+  min-height: 100%;
+  padding-bottom: 30px;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

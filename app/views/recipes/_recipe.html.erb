@@ -4,9 +4,6 @@
               <div class="date">Posted on
                 <strong><%=recipe.created_at.strftime("%b %d, %Y")%></strong>
               </div>
-              <div class="col-md-3 col-lg-offset-10">
-                <%= render '/partials/social_section' %>
-              </div>
               <h2>
                 <strong><%= link_to recipe.name, recipe_path(recipe) %></strong>
               </h2>
@@ -16,7 +13,7 @@
                     <%= embed('https://www.youtube.com/watch?v=4AH3mIwHWeo') %>
                   </div>
                 </div>
-              <p><%= recipe.description %></p>
+              <p><%= h(recipe.description).gsub(/\n/, '<br/>').html_safe %></p>
             </div>
     </div>
 </div>

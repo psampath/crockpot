@@ -22,7 +22,34 @@
 
       <%= f.label :image %>
       <%= f.file_field :image %>
-      
+
+      </br>
+        <fieldset id="recipe-ingredients">
+          <%= f.label :ingredients %>
+          <ol>
+            <%= f.fields_for :recipeIngredients do |quantity| %>
+              <%= render 'recipeIngredient_fields', f: quantity %>
+            <% end %>
+          </ol>
+          <%= link_to_add_association 'add ingredient', f, :recipeIngredients,
+            'data-association-insertion-node' => "#recipe-ingredients ol",
+            'data-association-insertion-method' => "append",
+            :wrap_object => Proc.new {|quantity| quantity.build_ingredient; quantity } %>
+      </fieldset>
+    </br>
+      <fieldset id="recipe-groups">
+        <%= f.label :groups %>
+        <ol>
+          <%= f.fields_for :recipeGroups do |quantity| %>
+            <%= render 'recipeGroup_fields', f: quantity %>
+          <% end %>
+        </ol>
+        <%= link_to_add_association 'add group', f, :recipeGroups,
+          'data-association-insertion-node' => "#recipe-groups ol",
+          'data-association-insertion-method' => "append",
+          :wrap_object => Proc.new {|quantity| quantity.build_group; quantity } %>
+        </fieldset>
+
       <%= f.submit 'Create Recipe', class: "btn btn-success" %>
     <%end%>
   </div>

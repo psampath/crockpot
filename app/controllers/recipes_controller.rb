@@ -51,8 +51,15 @@ class RecipesController < ApplicationController
   end
 
   def search
-    @recipes = Recipe.where("search_terms LIKE :query or name LIKE :query",
-          query: "%#{params[:search]}%" )
+    if params[:search].empty?
+        @recipes = Recipe.all.order('created_at DESC')
+        return @recipes
+    end
+    terms = params[:search].split
+    terms.each do |term|
+       @recipes = @recipes.to_a.concat Recipe.where("lower(search_terms) LIKE '%#{term}%' or lower(name) LIKE '%#{term}%'
+                          or description LIKE '%#{term}%'").order('updated_at DESC')
+    end
   end
 
   private

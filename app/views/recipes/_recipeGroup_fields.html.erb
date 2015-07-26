@@ -1,0 +1,9 @@
+<li class="control-group nested-fields">
+  <div class="controls">
+
+    <%= f.fields_for :group do |quantity_group| %>
+      <%= quantity_group.text_field :name %>
+    <% end %>
+
+  </div>
+</li>
