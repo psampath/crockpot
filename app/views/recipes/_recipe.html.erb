@@ -4,17 +4,19 @@
               <div class="date">Posted on
                 <strong><%=recipe.created_at.strftime("%b %d, %Y")%></strong>
               </div>
-              <h2 class="post-title">
+              <div class="col-md-3 col-lg-offset-10">
+                <%= render '/partials/social_section' %>
+              </div>
+              <h2>
                 <strong><%= link_to recipe.name, recipe_path(recipe) %></strong>
               </h2>
-              <p><%= recipe.description %></p>
-              <p>Use as many boxes as you like, and put anything you want in them! They are great for just about anything, the sky's the limit!</p>
-              <div class="col-lg-8 col-md-offset-2">
+              <p><%= recipe.summary %></p>
+                <div class="col-lg-7 col-centered">
                   <div class="video-container">
                     <%= embed('https://www.youtube.com/watch?v=4AH3mIwHWeo') %>
                   </div>
-              </div>
-
+                </div>
+              <p><%= recipe.description %></p>
             </div>
     </div>
 </div>
