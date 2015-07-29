@@ -39,7 +39,12 @@
   <!-- Navigation -->
   <%= render "partials/navbar" %>
   <div class="container">
-    <%= yield %>
+    <div class="col-lg-9">
+      <%= yield %>
+    </div>
+    <div class="col-lg-3">
+      <%= render 'partials/sidebar' %>
+    </div>
   </div>
   <%= render "partials/footer" %>
 </body>
