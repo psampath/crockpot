@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   get 'groups/new'
 
-  get 'ingredients' => 'ingredients#index'
+  get '/ingredients' => 'ingredients#index'
 
-  get 'groups' => 'groups#index'
+  get '/groups' => 'groups#index'
 
   get 'groups/create'
 

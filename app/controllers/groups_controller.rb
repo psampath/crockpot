@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  before_action: fetch_nav
-  
+  before_action :fetch_nav
+
   def index
     @groups = Group.all
   end
@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     if @group.save
       flash[:success] = "Your Group was created succesfully"
-      redirect_to recipes_list_path
+      redirect_to recipes_path
     else
       render :new
     end
