@@ -28,8 +28,6 @@ gem 'will_paginate', '~> 3.0.7'
 
 gem 'bourbon'
 
-gem 'cocoon'
-
 gem "paperclip", "~> 4.3"
 
 gem 'rails_12factor', group: :production

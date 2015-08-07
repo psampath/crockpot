@@ -24,10 +24,17 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @all_ingredients = Ingredient.all
+    @recipe_ingredient = @recipe.recipeIngredients.build
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
+    params[:recipe][:id].each  do |ingredient|
+      if !ingredient.empty?
+        @recipe.recipeIngredients.build(:id)
+      end
+    end
     if @recipe.save
       flash[:success] = "Your recipe was created succesfully"
       redirect_to recipes_list_path

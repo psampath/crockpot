@@ -23,19 +23,11 @@
       <%= f.label :image %>
       <%= f.file_field :image %>
 
-    </br>
-      <fieldset id="recipe-ingredients">
-        <%= f.label :ingredients %>
-        <ol>
-          <%= f.fields_for :recipeIngredients do |quantity| %>
-            <%= render 'recipeIngredient_fields', f: quantity %>
-          <% end %>
-        </ol>
-        <%= link_to_add_association 'add ingredient', f, :recipeIngredients,
-          'data-association-insertion-node' => "#recipe-ingredients ol",
-          'data-association-insertion-method' => "append",
-          :wrap_object => Proc.new {|quantity| quantity.build_ingredient; quantity } %>
-    </fieldset>
+
+      <%= f.fields_for(@recipe_ingredient) do |ri| %>
+          <%= collection_select(:recipe, :id, @all_ingredients, :id, :name, {}, {:multiple => true})%>
+      <% end %>
+
   </br>
     <fieldset id="recipe-groups">
       <%= f.label :groups %>

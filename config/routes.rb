@@ -1,20 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'groups/new'
-
-  get '/ingredients' => 'ingredients#index'
-
-  get '/groups' => 'groups#index'
-
-  get 'groups/create'
-
-  get 'groups/edit'
-
-  get 'ingredients/new'
-
-  get 'ingredients/create'
-
-  get 'ingredients/edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -26,7 +11,11 @@ Rails.application.routes.draw do
 
   get 'recipes/list' => 'recipes#list'
 
+  resources :ingredients
+
   resources :recipes
+
+  resources :groups
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
